@@ -3,3 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+img{
+    height: 100%;
+}
+.kort{
+   width: 150px; 
+}
