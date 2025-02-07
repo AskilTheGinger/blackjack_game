@@ -3,9 +3,23 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    width: 100%;
+    height: 100vh;
+    background-image:url("../bilder/kortspillFelt.jpg");
+    background-size: cover;
+}
 img{
     height: 100%;
 }
 .kort{
    width: 150px; 
+   margin: -40px;
+}
+
+#hand{
+    position: absolute;
+    top: 70%;
+    left:50%;
+    transform: translate(-50%,-50%);
 }
