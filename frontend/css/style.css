@@ -23,3 +23,30 @@ img{
     left:50%;
     transform: translate(-50%,-50%);
 }
+#hitButton{
+    
+    height: 50px;
+    width: 200px;
+    background-color:  rgb(55, 140, 120);
+    border: 2px solid rgb(4, 33, 4);
+    
+}
+#standButton{
+    height: 50px;
+    width: 200px;
+    background-color: aquamarine;
+}
+#dealerHand{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#result{
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+}
