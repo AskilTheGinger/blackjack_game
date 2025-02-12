@@ -37,7 +37,7 @@ function stand(){
         result.innerHTML = 'You lose'
 
     } else{
-        result.innerHTML= 'You win:)'
+        result.innerHTML= 'You win'
     }
 }
 
