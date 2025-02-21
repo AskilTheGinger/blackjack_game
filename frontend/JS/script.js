@@ -1,5 +1,5 @@
 const hand = document.getElementById('hand');
-const dealerHand =document.getElementById('dealerHand')
+const dealerHand = document.getElementById('dealerHand')
 let fullDeck = [];
 let deck = [];
 let colors = [
@@ -20,40 +20,60 @@ function assignValue(card, index) {
     }
 }
 
-function hit(){
+function hit() {
     const card = deck[0]
     hand.appendChild(card)
     handValue += Number(card.dataset.value)
     deck.shift()
     document.getElementById("winnerValue").textContent = `Score: ${handValue}`;
     console.log("Total hand value:", handValue);
-    console.log("Cards left: "+ deck.length)
+    console.log("Cards left: " + deck.length)
 }
-function stand(){
-    const result = document.getElementById('result')
-    if(handValue === dealerValue || handValue && dealerValue >21 ){
-        result.innerHTML = 'Draw'
-    } else if(handValue < dealerValue || handValue > 21 ){
-        result.innerHTML = 'You lose'
-
-    } else{
-        result.innerHTML= 'You win'
+function dealerHit(interval) {
+    const dealerCard = deck[0]
+    dealerHand.appendChild(dealerCard)
+    deck.shift()
+    dealerValue += Number(dealerCard.dataset.value)
+    console.log(dealerValue)
+    if (dealerValue>18 || dealerValue>handValue || handValue>21){
+        clearInterval(interval)
     }
 }
+
+
+function stand() {
+    const result = document.getElementById('result')
+    
+    if( (dealerValue>18 || dealerValue>handValue || handValue>21))
+        console.log('process done')
+    else{
+        const dealerhits = setInterval(function(){dealerHit(dealerhits)}, 300)
+        
+    }
+    if (handValue === dealerValue || handValue && dealerValue > 21) {
+        result.innerHTML = 'Draw'
+    } else if (handValue < dealerValue || handValue > 21) {
+        result.innerHTML = 'You lose'
+
+    } else {
+        result.innerHTML = 'You win'
+    }
+}
+
 
 // Create the full deck
 for (let c = 0; c < colors.length; c++) {
     for (let i = 1; i < 14; i++) {
         const card = document.createElement('img'); // Create <img> element
-        card.src = "bilder/kortstokk/" + i + colors[c];  
+        card.src = "bilder/kortstokk/" + i + colors[c];
         assignValue(card, i); // Assign value properly
         card.classList.add("kort");
         fullDeck.push(card); // Store the actual card elements, not just the paths
     }
 }
 
-// Copy fullDeck into deck for use
-deck = [...fullDeck]; // Use spread operator to create a fresh copy
+
+deck = [...fullDeck];
 
 // Fisher-Yates Shuffle
 function shuffle(array) {
@@ -72,19 +92,14 @@ function shuffle(array) {
 shuffle(deck);
 
 // Deal 2 cards and calculate hand value
-let handValue = 0;
-let dealerValue= 0;
+let handValue = 0
+let dealerValue = 0
 for (let i = 0; i < 2; i++) {
-    const card = deck[0]; // Now deck contains actual <img> elements
-    hand.appendChild(card); // Append the actual card element
-    handValue += Number(card.dataset.value); // Convert dataset value to number
-    deck.shift()
-    const dealerCard = deck[0]
-    dealerHand.appendChild(dealerCard)
-    deck.shift()
-    dealerValue += Number(dealerCard.dataset.value)
-    console.log(dealerValue)
+    hit()
+    dealerHit()
+
 }
+
 
 // Display the hand value
 console.log("Total hand value:", handValue);
