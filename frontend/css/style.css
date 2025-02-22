@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 body{
     width: 100%;
@@ -12,11 +13,31 @@ body{
 img{
     height: 100%;
 }
+button{
+    font-size: 20px;
+}
+div>button{
+    height: 30px;
+    background-color: cornflowerblue;
+    
+}
 .kort{
    width: 150px; 
    margin: -40px;
+   height: 200px;
 }
+.content {
+    display: flex;
+    flex-direction: row;
+    grid-column: 10/11;
+}
+#container{
+    display: grid;
+    padding: 30px;
+    grid-template-rows: 100px;
+    grid-template-columns: repeat(10, 1fr);
 
+}
 #hand{
     position: absolute;
     top: 70%;
@@ -48,5 +69,21 @@ img{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 30px  ;
 
+
+}
+h2{
+    color: white;
+    font-size: 30px;
+    
+}
+#winnerValue{
+    grid-column: 9/10;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    
 }
